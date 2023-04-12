@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+  </head>
+  <body>
+    <h1>Mendoza's Quiz</h1>
+    <form id="question1">
+      <h2>Question 1:</h2>
+      <p>What is debugging in programming?</p>
+      <input type="radio" name="q1" value="a">A. The process of removing errors from code<br>
+      <input type="radio" name="q1" value="b">B. The process of writing code<br>
+      <input type="radio" name="q1" value="c">C. The process of running code<br>
+      <input type="radio" name="q1" value="d">D. None of the above<br>
+      <button type="submit">Submit</button>
+    </form>
+    
+    <form id="question2" style="display:none">
+      <h2>Question 2:</h2>
+      <p>What is the purpose of an if statement in programming?</p>
+      <input type="radio" name="q2" value="a">A. To store data<br>
+      <input type="radio" name="q2" value="b">B. To repeat a block of code<br>
+      <input type="radio" name="q2" value="c">C. To input/output data<br>
+      <input type="radio" name="q2" value="d">B. To make decisions<br>
+      <button type="submit">Submit</button>
+    </form>
+
+    <div id="correct" style="display:none">
+      <p>Tama!! you may proceed if handa kana</p>
+      <button onclick="showQuestion2()">Next Question</button>
+    </div>
+    
+    <div id="incorrect" style="display:none">
+      <p>Yuck mali naman sagot mo :(</p>
+      <button onclick="restartGame()">Restart</button>
+    </div>
+    
+    <script>
+      function showQuestion2() {
+        document.getElementById("question1").style.display = "none";
+        document.getElementById("question2").style.display = "block";
+      
+      }
+      
+      function restartGame() {
+        document.getElementById("question2").style.display = "none";
+        document.getElementById("incorrect").style.display = "none";
+        document.getElementById("question1").style.display = "block";
+      }
+      
+      document.getElementById("question1").addEventListener("submit", function(event) {
+        event.preventDefault();
+        var answer = document.querySelector('input[name="q1"]:checked').value;
+        if (answer == "a") {
+          document.getElementById("correct").style.display = "block";
+        } else {
+          document.getElementById("incorrect").style.display = "block";
+        }
+      });
+      
+
+      document.getElementById("question2").addEventListener("submit", function(event) {
+        event.preventDefault();
+        var answer = document.querySelector('input[name="q2"]:checked').value;
+        if (answer == "b") {
+          document.getElementById("correct").innerHTML = "<p>Congratulations, you won!</p>";
+          document.getElementById("correct").style.display = "block";
+          document.getElementById("question5").style.display = "none";
+        } else {
+          document.getElementById("incorrect").style.display = "block";
+        }
+      });
+    </script>
+  </body>
+</html>
